@@ -18,11 +18,11 @@ class  SearchBooks extends Component {
         this.setState({searchBook})
       })
     }
-    componentDidMount(){
-      search(this.state.query).then((searchBook) => {
-        this.setState({searchBook})
-      })
-    }
+    // componentDidMount(){
+    //   search(this.state.query).then((searchBook) => {
+    //     this.setState({searchBook})
+    //   })
+    // }
     onAddBook = (event,book,category) => {
       const {value}= event.target
       this.setState(() => ({
@@ -45,6 +45,7 @@ class  SearchBooks extends Component {
                  value={this.state.query}
                  name="query"
                  onChange= {this.onChange}
+                 autoComplete="off"
                 />
               </div>
             </div>
