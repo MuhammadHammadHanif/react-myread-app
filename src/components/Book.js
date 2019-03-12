@@ -2,7 +2,7 @@ import React from 'react'
 
 const Book = (props) => {
     return(
-        <ol className="books-grid">
+        
             <li>
                 <div className="book">
                 <div className="book-top">
@@ -21,7 +21,6 @@ const Book = (props) => {
                 <div className="book-authors">{props.author}</div>
                 </div>
             </li>
-        </ol>
     )
 }
 

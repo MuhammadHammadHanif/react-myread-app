@@ -9,9 +9,9 @@ const ShelvesWrapper = (props) => {
               </div>
               <div className="list-books-content">
                 <div>
-                  <BookShelf title="Currently Reading"/>
-                  <BookShelf title="Want to Read"/>
-                  <BookShelf title="Read"/>
+                  <BookShelf title="Currently Reading" category='currentlyReading' {...props}/>
+                  <BookShelf title="Want to Read" category='wantToRead' {...props}/>
+                  <BookShelf title="Read" category='read' {...props}/>
                 </div>
               </div>
               <div className="open-search">

@@ -19,13 +19,11 @@ class BooksApp extends React.Component {
   onShowSearchPage = (showSearchPage) => {
     this.setState({ showSearchPage })
   }
-
   componentDidMount(){
     BooksAPI.getAll().then((allBooks) => {
       this.setState({allBooks})
     })
   }
-
   render() {
     console.log(this.state.allBooks)
     return (
@@ -33,7 +31,7 @@ class BooksApp extends React.Component {
         {this.state.showSearchPage ? (
           <SearchBooks showSearchPage={this.onShowSearchPage} />
         ) : (
-          <ShelvesWrapper showSearchPage={this.onShowSearchPage} />
+          <ShelvesWrapper showSearchPage={this.onShowSearchPage} books={this.state.allBooks} />
         )}
       </div>
     )
