@@ -1,5 +1,5 @@
 import React from 'react'
-import Book from './Book'
+import BookLists from './BookLists'
 
 const BookShelf = (props) => {
     return(
@@ -10,18 +10,20 @@ const BookShelf = (props) => {
             <div className="bookshelf-books">
             <ol className="books-grid">
             {
-                props.Books.filter(book => book.shelf === props.category).map(data =>  
-                    
-                <Book 
-                    id={data.id}
-                    key={data.id}
-                    bookTitle={data.title} 
-                    author={data.authors} 
-                    image={data.imageLinks.thumbnail}
-                    category={data.shelf}
-                    {...props}
-                />
-                )
+                props.Books.filter(book => book.shelf === props.category).length > 0 
+                ? props.Books.filter(book => book.shelf === props.category).map(data =>  
+                    <BookLists 
+                        id={data.id}
+                        key={data.id}
+                        bookTitle={data.title} 
+                        author={data.authors} 
+                        image={data.imageLinks.thumbnail}
+                        category={data.shelf}
+                        {...props}
+                    />
+                    ) 
+                : <p>No Books</p>
+                
             }
             </ol>
             </div>

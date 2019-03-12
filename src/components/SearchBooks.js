@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {search} from '../BooksAPI'
 import Book from './Book'
+import {search} from '../BooksAPI'
 class  SearchBooks extends Component {
     state= {
         query: '',
@@ -50,31 +50,15 @@ class  SearchBooks extends Component {
                { 
                 this.state.searchBook !== undefined 
                 ? this.state.searchBook.map(book => 
-                  //  <Book key={book.id} title={book.title} 
-                  //     author={book.authors} 
-                  //     image={book.imageLinks.thumbnail}
-                  //   />
-                  <li key={book.id}>
-                <div className="book">
-                <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
-                    <div className="book-shelf-changer">
-                    <select 
-                     value={this.state.selectedCategory}
-                     onChange={(event) => this.onAddBook(event,book,event.target.value)} 
-                    >
-                        <option value="move">Move to...</option>
-                        <option value="currentlyReading">Currently Reading</option>
-                        <option value="wantToRead">Want to Read</option>
-                        <option value="read">Read</option>
-                        <option value="none">None</option>
-                    </select>
-                    </div>
-                </div>
-                <div className="book-title">{book.title}</div>
-                <div className="book-authors">{book.authors}</div>
-                </div>
-            </li>
+                  <Book 
+                    id={book.id}
+                    key={book.id}
+                    bookTitle={book.title} 
+                    author={book.authors} 
+                    image={book.imageLinks.thumbnail}
+                    category={book.shelf}
+                    onSelectCategory={(event) => this.onAddBook(event,book,event.target.value)}
+                  />
                 ) 
                 : 'No Book Found'
                }

@@ -1,15 +1,8 @@
 import React, {Component} from 'react'
-import {update} from '../BooksAPI'
 
-class Book extends Component {
+class  Book extends Component {
     state= {
         selectionValue: this.props.category
-    }
-    onSelectCategory = (event) => {
-        const {value} = event.target;
-        this.setState(() => ({selectionValue: value}))
-        update(this.props, value)
-        this.props.onSelectCategoryAction(this.props.id, value)
     }
     render(){
         return(
@@ -19,8 +12,8 @@ class Book extends Component {
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${this.props.image}")` }}></div>
                     <div className="book-shelf-changer">
                     <select 
-                     onChange={this.onSelectCategory} 
-                     value={this.state.selectionValue}
+                        onChange={this.props.onSelectCategory} 
+                        value={this.state.selectionValue}
                     >
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
@@ -34,7 +27,7 @@ class Book extends Component {
                 <div className="book-authors">{this.props.author}</div>
                 </div>
             </li>
-    )
+        )
     }
 }
 
