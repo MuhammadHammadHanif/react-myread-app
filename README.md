@@ -1,5 +1,8 @@
-# `MyRead`
+# `My Read App`
 bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read.
+
+## `Demo`
+https://myread-app.firebaseapp.com/
 
 ## `Installation and Launch`
 To install the application clone this git repository
