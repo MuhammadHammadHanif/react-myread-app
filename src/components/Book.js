@@ -15,7 +15,7 @@ class  Book extends Component {
                         onChange={this.props.onSelectCategory} 
                         value={this.state.selectionValue}
                     >
-                        <option value="move" disabled>Move to...</option>
+                        <option value="move">Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
                         <option value="read">Read</option>
