@@ -1,7 +1,7 @@
 import React from "react";
 import BookShelf from './BookShelf'
 
-const ShelvesWrapper = (props) => {
+const ShelvesWrapper = (props) => {  
     return(
             <div className="list-books">
               <div className="list-books-title">

@@ -22,8 +22,6 @@ class  SearchBooks extends Component {
       })
     }
     render(){
-      console.log(this.state.searchBook);
-      
       return(
         <div className="search-books">
             <div className="search-books-bar">

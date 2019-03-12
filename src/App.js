@@ -19,6 +19,19 @@ class BooksApp extends React.Component {
   onShowSearchPage = (showSearchPage) => {
     this.setState({ showSearchPage })
   }
+  onSelectCategoryAction = (id, category) => {
+    let bookData = this.state.allBooks
+     bookData.map((book) => {
+      if(book.id === id)
+      {
+       book.shelf=category
+       this.setState({
+        allBooks:bookData 
+      })
+      }
+    }
+    )
+  }
   componentDidMount(){
     BooksAPI.getAll().then((allBooks) => {
       this.setState({allBooks})
@@ -31,7 +44,10 @@ class BooksApp extends React.Component {
         {this.state.showSearchPage ? (
           <SearchBooks showSearchPage={this.onShowSearchPage} />
         ) : (
-          <ShelvesWrapper showSearchPage={this.onShowSearchPage} books={this.state.allBooks} />
+          <ShelvesWrapper 
+            showSearchPage={this.onShowSearchPage} 
+            Books={this.state.allBooks} 
+            onSelectCategoryAction={this.onSelectCategoryAction} />
         )}
       </div>
     )
