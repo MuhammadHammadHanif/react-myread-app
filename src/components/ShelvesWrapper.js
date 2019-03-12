@@ -19,7 +19,6 @@ const ShelvesWrapper = (props) => {
                 <Link to="/search-books">
                   <button>Add a book</button>
                 </Link>
-                {/* <button onClick={() => props.showSearchPage(true)}>Add a book</button> */}
               </div>
             </div>
     )

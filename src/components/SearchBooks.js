@@ -14,7 +14,7 @@ class  SearchBooks extends Component {
       this.setState(() => ({
         [name]: value
       }))
-      search(this.state.query).then((searchBook) => {
+      search(event.target.value).then((searchBook) => {
         this.setState({searchBook})
       })
     }
@@ -60,7 +60,7 @@ class  SearchBooks extends Component {
                     bookTitle={book.title} 
                     author={book.authors} 
                     image={book.imageLinks.thumbnail}
-                    category={book.shelf}
+                    category={this.state.selectedCategory}
                     onSelectCategory={(event) => this.onAddBook(event,book,event.target.value)}
                   />
                 ) 

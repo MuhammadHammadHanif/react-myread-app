@@ -55,6 +55,7 @@ class AppRouter extends Component {
                         path="/search-books" 
                         render={() => <SearchBooks 
                         showSearchPage={this.onShowSearchPage} 
+                        books = {this.state.allBooks}
                         onAddBook={this.onAddBook} />}  
                     />
                 </Switch>
