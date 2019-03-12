@@ -3,7 +3,7 @@ import {update} from '../BooksAPI'
 
 class Book extends Component {
     state= {
-        selectionValue: ''
+        selectionValue: this.props.category
     }
     onSelectCategory = (event) => {
         const {value} = event.target;
@@ -22,7 +22,7 @@ class Book extends Component {
                      onChange={this.onSelectCategory} 
                      value={this.state.selectionValue}
                     >
-                        <option value="move">Move to...</option>
+                        <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
                         <option value="read">Read</option>

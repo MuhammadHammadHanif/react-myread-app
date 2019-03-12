@@ -32,6 +32,12 @@ class BooksApp extends React.Component {
     }
     )
   }
+  onAddBook = (book,category) =>{
+    book.shelf=category
+    this.setState(prevState => ({
+      allBooks: [...prevState.allBooks, book]
+    }))
+  }
   componentDidMount(){
     BooksAPI.getAll().then((allBooks) => {
       this.setState({allBooks})
@@ -42,7 +48,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <SearchBooks showSearchPage={this.onShowSearchPage} />
+          <SearchBooks showSearchPage={this.onShowSearchPage} onAddBook={this.onAddBook} />
         ) : (
           <ShelvesWrapper 
             showSearchPage={this.onShowSearchPage} 

@@ -11,14 +11,17 @@ const BookShelf = (props) => {
             <ol className="books-grid">
             {
                 props.Books.filter(book => book.shelf === props.category).map(data =>  
+                    
                 <Book 
                     id={data.id}
                     key={data.id}
                     bookTitle={data.title} 
                     author={data.authors} 
                     image={data.imageLinks.thumbnail}
+                    category={data.shelf}
                     {...props}
-                />)
+                />
+                )
             }
             </ol>
             </div>
