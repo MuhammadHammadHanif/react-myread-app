@@ -1,16 +1,16 @@
-# `My Read App`
+#`My Read App`
 bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read.
 
-## `Demo`
+##`Demo`
 https://myread-app.firebaseapp.com/
 
-## `Installation and Launch`
+##`Installation and Launch`
 To install the application clone this git repository
 
 Go into the application folder
 
-Install dependencies usingnpm command line tool
+Install dependencies using npm command line tool (npm install)
 
-Run the application, again using npm
+Run the application, again using npm command line tool (npm start)
 
-### `This will open a new browser tab/window with the application running.`
+###`This will open a new browser tab/window with the application running.`
