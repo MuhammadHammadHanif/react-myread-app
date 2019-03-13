@@ -13,7 +13,7 @@ class AppRouter extends Component {
 
       // for changing shelf type for book on dashboard
       changeBookShelfCategory = (id, category) => {
-        let bookData = this.state.allBooks
+        const bookData = this.state.allBooks
          bookData.map((book) => {
           if(book.id === id)
           {
@@ -21,13 +21,27 @@ class AppRouter extends Component {
             this.setState({
               allBooks:bookData 
             })
-          }}
+          }
+         }
         )
       }
 
+      // deleting duplicate book from main state
+      deleteBook = (book) => {
+        const bookData = this.state.allBooks 
+        var removeIndex = bookData.map(function(item) { return item.id; }).indexOf(book.id);
+        bookData.splice(removeIndex, 1);
+        this.setState({
+          allBooks:bookData 
+        })
+      }
       // for storing book from search page in main state
       storingBook = (book,category) =>{
+        // first delete the book if present
+        this.deleteBook(book)
+        // then set the shelf property on new book object coming from (search book page)
         book.shelf=category
+        // then insert into state
         this.setState(prevState => ({
           allBooks: [...prevState.allBooks, book]
         }))
