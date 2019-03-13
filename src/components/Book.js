@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 
 class  Book extends Component {
     state= {
-        selectionValue: this.props.category
+        // check if category is undefined then return none
+        selectionValue:  this.props.category === undefined ? 'none' : this.props.category
     }
     render(){
         return(

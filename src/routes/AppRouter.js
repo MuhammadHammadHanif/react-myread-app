@@ -10,29 +10,30 @@ class AppRouter extends Component {
         allBooks: [],
         showSearchPage: false
       }
-    
-      onShowSearchPage = (showSearchPage) => {
-        this.setState({ showSearchPage })
-      }
-      onSelectCategoryAction = (id, category) => {
+
+      // for changing shelf type for book on dashboard
+      changeBookShelfCategory = (id, category) => {
         let bookData = this.state.allBooks
          bookData.map((book) => {
           if(book.id === id)
           {
-           book.shelf=category
-           this.setState({
-            allBooks:bookData 
-          })
-          }
-        }
+            book.shelf=category
+            this.setState({
+              allBooks:bookData 
+            })
+          }}
         )
       }
-      onAddBook = (book,category) =>{
+
+      // for storing book from search page in main state
+      storingBook = (book,category) =>{
         book.shelf=category
         this.setState(prevState => ({
           allBooks: [...prevState.allBooks, book]
         }))
       }
+
+      // to store data in state on component mount from BookApi with getall() method
       componentDidMount(){
         BooksAPI.getAll().then((allBooks) => {
           this.setState({allBooks})
@@ -46,17 +47,15 @@ class AppRouter extends Component {
                     <Route 
                         path="/" 
                         render={()=><ShelvesWrapper 
-                        showSearchPage={this.onShowSearchPage} 
                         Books={this.state.allBooks} 
-                        onSelectCategoryAction={this.onSelectCategoryAction} />} 
+                        changeBookShelfCategory={this.changeBookShelfCategory} />} 
                         exact={true} 
                     />
                     <Route 
                         path="/search-books" 
                         render={() => <SearchBooks 
-                        showSearchPage={this.onShowSearchPage} 
-                        books = {this.state.allBooks}
-                        onAddBook={this.onAddBook} />}  
+                        storedBooks = {this.state.allBooks}
+                        storingBook={this.storingBook} />}  
                     />
                 </Switch>
                 </div>

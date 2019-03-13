@@ -4,11 +4,13 @@ import {update} from '../BooksAPI'
 
 class BookLists extends Component {
     
+    // for updateing book shelf category with BOOKAPI update method
     onSelectCategory = (event) => {
         const {value} = event.target;
         this.setState(() => ({selectionValue: value}))
         update(this.props, value)
-        this.props.onSelectCategoryAction(this.props.id, value)
+        // changing main state shelf type as well for the selected book
+        this.props.changeBookShelfCategory(this.props.id, value)
     }
     render(){
         return(
