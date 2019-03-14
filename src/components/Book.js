@@ -5,7 +5,18 @@ class  Book extends Component {
         // check if category is undefined then return none
         selectionValue:  this.props.category === undefined ? 'none' : this.props.category
     }
+    // componentWillReceiveProps(prevProps,nextProps){
+    //     if(prevProps !== nextProps)
+    //     {
+    //         this.props.storedBooks.filter(storeBook => storeBook.id === this.props.id ?
+    //              this.setState({selectionValue:storeBook.shelf})
+    //              : this.setState({selectionValue:this.props.category === undefined ? 'none' : this.props.category}) )
+    //     }
+        
+    // }
+
     render(){
+       
         return(
             <li>
                 <div className="book">

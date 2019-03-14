@@ -30,6 +30,7 @@ class AppRouter extends Component {
       deleteBook = (book) => {
         const bookData = this.state.allBooks 
         var removeIndex = bookData.map(function(item) { return item.id; }).indexOf(book.id);
+        //var removeIndex = bookData.indexOf(item => item.id===book.id);
         bookData.splice(removeIndex, 1);
         this.setState({
           allBooks:bookData 
@@ -38,7 +39,7 @@ class AppRouter extends Component {
       // for storing book from search page in main state
       storingBook = (book,category) =>{
         // first delete the book if present
-        this.deleteBook(book)
+        //this.deleteBook(book)
         // then set the shelf property on new book object coming from (search book page)
         book.shelf=category
         // then insert into state

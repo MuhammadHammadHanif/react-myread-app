@@ -6,7 +6,7 @@ class  SearchBooks extends Component {
     state= {
         query: '',
         searchBooks: [],
-        error: ''
+        error: 'Search Term Not Present / No Books'
       }
     
     // activate when value change in textbox 
@@ -18,7 +18,9 @@ class  SearchBooks extends Component {
       }))
       // using method from bookAPI to search book and storing in state
       search(event.target.value).then((searchBooks) => {
-        this.setState({searchBooks})
+        // to check if search keyword is present or if textbox is empty
+        value === "" || searchBooks.error ? this.setState({error: 'Search Term Not Present / No Books', searchBooks: ''}) 
+        : this.setState({searchBooks, error:''})
       })
     }
 
@@ -29,7 +31,7 @@ class  SearchBooks extends Component {
       // method for storing book and category in the main state (method is from parent component)
       this.props.storingBook(book,category)
     }
-
+    
     render(){
       return(
         <div className="search-books">
@@ -53,7 +55,11 @@ class  SearchBooks extends Component {
             </div>
             <div className="search-books-results">
             {/* For showing Error */}
-            {this.state.error && <p>{this.state.error}</p>}
+            {
+              this.state.error || this.state.query === ""
+              ? 
+              <p style={{textAlign: "center"}}>{this.state.error}</p> 
+              :
               <ol className="books-grid">
                {/* To display the search books */}
                { 
@@ -67,11 +73,14 @@ class  SearchBooks extends Component {
                     image={searchBook.imageLinks.thumbnail}
                     category={this.props.storedBooks.map(storeBook => storeBook.id === searchBook.id ? storeBook.shelf : 'none').filter(specificbook => specificbook!=="none")[0]}
                     onSelectCategory={(event) => this.AddBook(searchBook,event.target.value)}
+                    {...this.props}
                   />
                 ) 
-                : 'No Book Found'
+                : 'Keyword Not Present / No Books'
                }
               </ol>
+            }
+              
             </div>
           </div>
     )
