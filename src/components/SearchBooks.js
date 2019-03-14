@@ -31,7 +31,7 @@ class  SearchBooks extends Component {
       // method for storing book and category in the main state (method is from parent component)
       this.props.storingBook(book,category)
     }
-    
+
     render(){
       return(
         <div className="search-books">
@@ -73,6 +73,7 @@ class  SearchBooks extends Component {
                     image={searchBook.imageLinks.thumbnail}
                     category={this.props.storedBooks.map(storeBook => storeBook.id === searchBook.id ? storeBook.shelf : 'none').filter(specificbook => specificbook!=="none")[0]}
                     onSelectCategory={(event) => this.AddBook(searchBook,event.target.value)}
+                    notnoneOption={true}
                     {...this.props}
                   />
                 ) 

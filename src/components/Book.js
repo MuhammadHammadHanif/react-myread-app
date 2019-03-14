@@ -1,22 +1,18 @@
 import React, {Component} from 'react'
 
 class  Book extends Component {
+
     state= {
         // check if category is undefined then return none
         selectionValue:  this.props.category === undefined ? 'none' : this.props.category
     }
-    // componentWillReceiveProps(prevProps,nextProps){
-    //     if(prevProps !== nextProps)
-    //     {
-    //         this.props.storedBooks.filter(storeBook => storeBook.id === this.props.id ?
-    //              this.setState({selectionValue:storeBook.shelf})
-    //              : this.setState({selectionValue:this.props.category === undefined ? 'none' : this.props.category}) )
-    //     }
-        
-    // }
+
+    // to update the state of category 
+    componentWillReceiveProps(nextProps){
+        this.setState({selectionValue: nextProps.selectionValue})
+    }
 
     render(){
-       
         return(
             <li>
                 <div className="book">
@@ -27,11 +23,11 @@ class  Book extends Component {
                         onChange={this.props.onSelectCategory} 
                         value={this.state.selectionValue}
                     >
-                        <option value="move">Move to...</option>
+                        <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
                         <option value="read">Read</option>
-                        <option value="none">None</option>
+                        <option value="none" disabled={this.props.notnoneOption}>None</option>
                     </select>
                     </div>
                 </div>
