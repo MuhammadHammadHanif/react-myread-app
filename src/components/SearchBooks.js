@@ -33,6 +33,8 @@ class  SearchBooks extends Component {
     }
 
     render(){
+      // destructing
+      const {query, error, searchBooks} = this.state;
       return(
         <div className="search-books">
             <div className="search-books-bar">
@@ -46,7 +48,7 @@ class  SearchBooks extends Component {
                 <input 
                  type="text" 
                  placeholder="Search by title or author"
-                 value={this.state.query}
+                 value={query}
                  name="query"
                  onChange= {this.onChangeValue}
                  autoComplete="off"
@@ -54,30 +56,27 @@ class  SearchBooks extends Component {
               </div>
             </div>
             <div className="search-books-results">
-            {/* For showing Error */}
+            {(searchBooks.length > 0 && query !== "") && <p style={{paddingLeft: "35px"}}>Books Found: <strong>{searchBooks.length}</strong></p>}
+            {/* Checking for error or empty if yes showing Error else show search books */}
             {
-              this.state.error || this.state.query === ""
+              error || query === ""
               ? 
               <p style={{textAlign: "center"}}>{this.state.error}</p> 
               :
               <ol className="books-grid">
-               {/* To display the search books */}
                { 
-                this.state.searchBooks !== undefined 
-                ? this.state.searchBooks.map(searchBook => 
+                searchBooks.map(searchBook => 
                   <Book 
                     id={searchBook.id}
                     key={searchBook.id}
-                    bookTitle={searchBook.title} 
-                    author={searchBook.authors} 
-                    image={searchBook.imageLinks.thumbnail}
+                    bookTitle={searchBook.title ? searchBook.title : ''} 
+                    author={searchBook.authors ? searchBook.authors : ''} 
+                    image={searchBook.imageLinks ? searchBook.imageLinks.thumbnail : ''}
                     category={this.props.storedBooks.map(storeBook => storeBook.id === searchBook.id ? storeBook.shelf : 'none').filter(specificbook => specificbook!=="none")[0]}
                     onSelectCategory={(event) => this.AddBook(searchBook,event.target.value)}
-                    notnoneOption={true}
                     {...this.props}
                   />
                 ) 
-                : 'Keyword Not Present / No Books'
                }
               </ol>
             }

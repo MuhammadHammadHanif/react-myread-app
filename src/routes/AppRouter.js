@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import SearchBooks from '../components/SearchBooks'
 import ShelvesWrapper from '../components/ShelvesWrapper'
-import * as BooksAPI from '../BooksAPI'
+import {getAll} from '../BooksAPI'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import '../App.css'
 
 class AppRouter extends Component {
     state = {
-        allBooks: [],
-        showSearchPage: false
+        allBooks: []
       }
 
       // for changing shelf type for book on dashboard
@@ -35,6 +34,7 @@ class AppRouter extends Component {
           allBooks:newBookData 
         })
       }
+
       // for storing book from search page in main state
       storingBook = (book,category) =>{
         // first delete the book if present
@@ -49,7 +49,7 @@ class AppRouter extends Component {
 
       // to store data in state on component mount from BookApi with getall() method
       componentDidMount(){
-        BooksAPI.getAll().then((allBooks) => {
+        getAll().then((allBooks) => {
           this.setState({allBooks})
         })
       }
@@ -60,16 +60,20 @@ class AppRouter extends Component {
                 <Switch>
                     <Route 
                         path="/" 
-                        render={()=><ShelvesWrapper 
-                        Books={this.state.allBooks} 
-                        changeBookShelfCategory={this.changeBookShelfCategory} />} 
+                        render={()=>
+                        <ShelvesWrapper 
+                          Books={this.state.allBooks} 
+                          changeBookShelfCategory={this.changeBookShelfCategory} 
+                        />} 
                         exact={true} 
                     />
                     <Route 
                         path="/search-books" 
-                        render={() => <SearchBooks 
+                        render={() => 
+                        <SearchBooks 
                         storedBooks = {this.state.allBooks}
-                        storingBook={this.storingBook} />}  
+                        storingBook={this.storingBook} 
+                        />}  
                     />
                 </Switch>
                 </div>

@@ -8,6 +8,7 @@ class BookLists extends Component {
     onSelectCategory = (event) => {
         const {value} = event.target;
         this.setState(() => ({selectionValue: value}))
+        // updating the dashboard book 
         update(this.props, value)
         // changing main state shelf type as well for the selected book
         this.props.changeBookShelfCategory(this.props.id, value)

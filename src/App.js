@@ -2,13 +2,10 @@ import React from 'react'
 import './App.css'
 import AppRouter from './routes/AppRouter'
 
-class App extends React.Component {
-  
-  render() {
+const  App = () => {
     return (
       <AppRouter />
     )
-  }
 }
 
 export default App
